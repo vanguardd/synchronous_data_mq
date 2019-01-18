@@ -1,0 +1,15 @@
+# 开发环境配置(配置项只包括环境不同项)
+spring:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/system_b?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: seahouse
+      password: 1234
+
+logging:
+  level:
+    org.springframework:
+      data: DEBUG
+    tk.mybatis: DEBUG
+
+
