@@ -1,15 +1,16 @@
 # 开发环境配置(配置项只包括环境不同项)
 spring:
     datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.9.46:3306/system_a?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: root
+        url: jdbc:mysql://192.168.9.46:3306/system_a?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: root
 
 logging:
   level:
     org.springframework:
       data: DEBUG
+      web: DEBUG
     tk.mybatis: DEBUG
 
 

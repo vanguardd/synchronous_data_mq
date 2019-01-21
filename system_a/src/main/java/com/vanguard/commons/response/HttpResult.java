@@ -1,4 +1,4 @@
-package com.vanguard.commons.base;
+package com.vanguard.commons.response;
 
 
 import java.io.Serializable;
@@ -6,10 +6,10 @@ import java.io.Serializable;
 /**
  * @author vanguard
  * @version 1.0
- * @descripe BaseResult 统一返回结果类
+ * @descripe HttpResult 统一返回结果类
  * @date: 2018-07-09
  */
-public class BaseResult implements Serializable {
+public class HttpResult implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -22,13 +22,26 @@ public class BaseResult implements Serializable {
 	/** 返回数据 */
 	private Object data;
 	
-	public BaseResult(Integer status, String message) {
+	public HttpResult(Integer status, String message) {
 		super();
 		this.status = status;
 		this.message = message;
 	}
 
-	public BaseResult(Integer status, String message, Object data) {
+	public HttpResult(CommonReturnCode commonReturnCode) {
+		super();
+		this.status = commonReturnCode.getStatus();
+		this.message = commonReturnCode.getMessage();
+	}
+
+	public HttpResult(CommonReturnCode commonReturnCode, Object data) {
+		super();
+		this.status = commonReturnCode.getStatus();
+		this.message = commonReturnCode.getMessage();
+		this.data = data;
+	}
+
+	public HttpResult(Integer status, String message, Object data) {
 		super();
 		this.status = status;
 		this.message = message;

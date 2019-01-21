@@ -11,29 +11,31 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.team.seahouse.commons.base.BaseMapper"/>
+            <property name="mappers" value="com.vanguard.commons.base.BaseMapper"/>
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/system_a?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
-                        userId="seahouse"
-                        password="1234">
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/system_b?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"
+                        userId="root"
+                        password="root">
         </jdbcConnection>
 
 
-        <javaModelGenerator targetPackage="com.team.seahouse.domain" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.vanguard.domain" targetProject="src/main/java"/>
 
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.team.seahouse.mapper" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="com.vanguard.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-       <!-- <table tableName="tb_order" domainObjectName="Order">
+        <table tableName="test1" domainObjectName="Test1">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>-->
-
-        <table tableName="tb_device" domainObjectName="Device">
+        </table>
+        <table tableName="test2" domainObjectName="Test2">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="test3" domainObjectName="Test3">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 
