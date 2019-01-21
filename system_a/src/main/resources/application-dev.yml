@@ -2,9 +2,9 @@
 spring:
     datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.1.120:3306/system_a?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: seahouse
-      password: 1234
+      url: jdbc:mysql://192.168.9.46:3306/system_a?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: root
 
 logging:
   level:

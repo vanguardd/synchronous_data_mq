@@ -36,9 +36,8 @@ spring:
         useGlobalDataSourceStat: false
 
 mybatis:
-      type-aliases-package: com.team.seahouse.domain
+      type-aliases-package: com.vanguard.domain
       mapper-locations: classpath:mapper/*.xml
-      typeHandlersPackage: com.team.seahouse.mapper.typehandler
       configuration:
         #开启驼峰式属性和字段映射
         mapUnderscoreToCamelCase: true
@@ -47,7 +46,7 @@ mybatis:
 
 mapper:
     mappers:
-        - com.team.seahouse.commons.base.BaseMapper
+        - com.vanguard.commons.base.BaseMapper
     notEmpty: true
     identity: MYSQL
     before: false
