@@ -2,6 +2,8 @@ package com.vanguard.service.impl;
 
 import com.vanguard.domain.Test2;
 import com.vanguard.domain.Test3;
+import com.vanguard.jms.Producer;
+import com.vanguard.jms.ProducerFactory;
 import com.vanguard.mapper.Test2Mapper;
 import com.vanguard.mapper.Test3Mapper;
 import com.vanguard.service.Test2Service;
@@ -27,7 +29,9 @@ public class Test3ServiceImpl implements Test3Service {
     @Override
     public void save(Test3 test3) {
         test3Mapper.insert(test3);
-        //TODO 添加成功后，发送同步消息
+        //添加成功后，发送同步消息
+        Producer add = ProducerFactory.createProducer("add");
+        add.sendMsg(test3);
     }
 
     @Override
@@ -45,7 +49,7 @@ public class Test3ServiceImpl implements Test3Service {
     @Override
     public Test3 update(Test3 test3) {
         test3Mapper.updateByPrimaryKey(test3);
-        //TODO 修改成功后，发送同步消息
+        //修改成功后，发送同步消息
 
         return test3;
     }

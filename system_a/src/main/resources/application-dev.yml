@@ -5,6 +5,13 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
         username: root
         password: root
+    activemq:
+      user: admin
+      password: admin
+      broker-url: tcp://192.168.9.46:61616
+      pool:
+        enabled: true
+        max-connections: 10
 
 logging:
   level:

@@ -26,13 +26,13 @@ public class Test3Controller extends BaseController {
     @Autowired
     private Test3Service test3Service;
 
-    @PostMapping("/add")
+    @PostMapping("")
     public HttpResult save(@RequestBody Test3 test3) {
         test3Service.save(test3);
         return new HttpResult(CommonReturnCode.OK);
     }
 
-    @PutMapping("/update")
+    @PutMapping("")
     public HttpResult update(@RequestBody Test3 test3) {
         Test3 update = test3Service.update(test3);
         return new HttpResult(CommonReturnCode.OK, update);
