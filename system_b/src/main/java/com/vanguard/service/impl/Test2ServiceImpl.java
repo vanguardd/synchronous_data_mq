@@ -22,9 +22,8 @@ public class Test2ServiceImpl implements Test2Service {
     private Test2Mapper test2Mapper;
 
     @Override
-    public void save(Test2 test2) {
+    public void add(Test2 test2) {
         test2Mapper.insert(test2);
-        //TODO 添加成功后，发送同步消息
     }
 
     @Override
@@ -42,7 +41,6 @@ public class Test2ServiceImpl implements Test2Service {
     @Override
     public Test2 update(Test2 test2) {
         test2Mapper.updateByPrimaryKey(test2);
-        //TODO 修改成功后，发送同步消息
 
         return test2;
     }
@@ -50,7 +48,6 @@ public class Test2ServiceImpl implements Test2Service {
     @Override
     public void delete(Long id) {
         test2Mapper.deleteByPrimaryKey(id);
-        //TODO 删除成功后，发送同步消息
 
     }
 }

@@ -1,5 +1,6 @@
 package com.vanguard.service.impl;
 
+import com.vanguard.commons.exception.BusinessException;
 import com.vanguard.domain.Test2;
 import com.vanguard.domain.Test3;
 import com.vanguard.jms.Producer;
@@ -27,7 +28,7 @@ public class Test3ServiceImpl implements Test3Service {
     private Test3Mapper test3Mapper;
 
     @Override
-    public void save(Test3 test3) {
+    public void add(Test3 test3) {
         test3Mapper.insert(test3);
         //添加成功后，发送同步消息
         Producer add = ProducerFactory.createProducer("add");
@@ -50,7 +51,8 @@ public class Test3ServiceImpl implements Test3Service {
     public Test3 update(Test3 test3) {
         test3Mapper.updateByPrimaryKey(test3);
         //修改成功后，发送同步消息
-
+        Producer update = ProducerFactory.createProducer("update");
+        update.sendMsg(test3);
         return test3;
     }
 
@@ -58,6 +60,9 @@ public class Test3ServiceImpl implements Test3Service {
     public void delete(Long id) {
         test3Mapper.deleteByPrimaryKey(id);
         //TODO 删除成功后，发送同步消息
-
+        Producer delete = ProducerFactory.createProducer("delete");
+        Test3 test3 = new Test3();
+        test3.setId(id);
+        delete.sendMsg(test3);
     }
 }

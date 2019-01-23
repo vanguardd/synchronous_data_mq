@@ -25,8 +25,8 @@ public class Test1Controller extends BaseController {
     private Test1Service test1Service;
 
     @PostMapping("/add")
-    public HttpResult save(@RequestBody Test1 test1) {
-        test1Service.save(test1);
+    public HttpResult add(@RequestBody Test1 test1) {
+        test1Service.add(test1);
         return new HttpResult(CommonReturnCode.OK);
     }
 

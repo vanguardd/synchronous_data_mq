@@ -1,12 +1,13 @@
 package com.vanguard.jms;
 
+import com.vanguard.commons.base.BaseDomain;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
-import javax.jms.Destination;
-import javax.jms.ObjectMessage;
+import javax.jms.*;
 
 
 /**
@@ -23,9 +24,14 @@ public class AddProducer implements Producer {
     private JmsMessagingTemplate jmsMessagingTemplate;
 
     @Override
-    public void sendMsg(Object message) {
+    public void sendMsg(BaseDomain obj) {
 
         //发送消息
-        jmsMessagingTemplate.convertAndSend("add-queue", message);
+        jmsMessagingTemplate.convertAndSend("add-queue", new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                return session.createObjectMessage(obj);
+            }
+        });
     }
 }

@@ -22,9 +22,8 @@ public class Test1ServiceImpl implements Test1Service {
     private Test1Mapper test1Mapper;
 
     @Override
-    public void save(Test1 test1) {
+    public void add(Test1 test1) {
         test1Mapper.insert(test1);
-        //TODO 添加成功后，发送消息同步数据
     }
 
     @Override
@@ -42,7 +41,6 @@ public class Test1ServiceImpl implements Test1Service {
     @Override
     public Test1 update(Test1 test1) {
         test1Mapper.updateByPrimaryKey(test1);
-        //TODO 修改成功后，发送消息同步
 
         return test1;
     }
@@ -52,7 +50,5 @@ public class Test1ServiceImpl implements Test1Service {
         Test1 test1 = new Test1();
         test1.setId(id);
         test1Mapper.updateByPrimaryKey(test1);
-        //TODO 删除成功后，发送消息同步
-
     }
 }

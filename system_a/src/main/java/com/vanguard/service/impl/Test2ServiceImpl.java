@@ -24,7 +24,7 @@ public class Test2ServiceImpl implements Test2Service {
     private Test2Mapper test2Mapper;
 
     @Override
-    public void save(Test2 test2) {
+    public void add(Test2 test2) {
         test2Mapper.insert(test2);
         //添加成功后，发送同步消息
         Producer add = ProducerFactory.createProducer("add");
@@ -57,6 +57,7 @@ public class Test2ServiceImpl implements Test2Service {
         test2Mapper.deleteByPrimaryKey(id);
         //删除成功后，发送同步消息
         Producer delete = ProducerFactory.createProducer("delete");
-        delete.sendMsg(id);
+        Test2 test2 = new Test2();
+        delete.sendMsg(test2);
     }
 }
