@@ -54,7 +54,18 @@ public class JmsServiceImpl implements JmsService {
     @Override
     @JmsListener(destination = "update-queue")
     public void updateQueue(Message message) {
-
+        if(message instanceof ObjectMessage) {
+            ObjectMessage objectMessage = (ObjectMessage) message;
+            try {
+                Serializable object = objectMessage.getObject();
+                if(object instanceof Test1) {
+                    Test1 test1 = (Test1) object;
+                    test1Service.update(test1);
+                }
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
