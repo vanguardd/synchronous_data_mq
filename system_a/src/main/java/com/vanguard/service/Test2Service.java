@@ -19,7 +19,7 @@ public interface Test2Service {
      * @date 2019/1/21 15:33
      * @return void
      */
-    void save(Test2 test2);
+    void add(Test2 test2);
 
     /**
      * 查询所有的信息

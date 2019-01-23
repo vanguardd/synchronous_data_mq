@@ -1,5 +1,7 @@
 package com.vanguard.jms;
 
+import com.vanguard.commons.base.BaseDomain;
+
 /**
  * @Title: 消息生产者接口
  * @Description:
@@ -11,7 +13,7 @@ public interface Producer {
 
     /**
      * 发送消息
-     * @param message 消息对象
+     * @param domain 消息对象
      */
-    void sendMsg(Object message);
+    void sendMsg(BaseDomain domain);
 }

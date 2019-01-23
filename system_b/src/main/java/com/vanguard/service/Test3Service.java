@@ -19,11 +19,10 @@ public interface Test3Service {
      * @date 2019/1/21 15:33
      * @return void
      */
-    void save(Test3 test3);
+    void add(Test3 test3);
 
     /**
      * 查询所有的信息
-     * @param
      * @author vanguard
      * @date 2019/1/21 15:45
      * @return java.util.List<com.vanguard.domain.Test3>

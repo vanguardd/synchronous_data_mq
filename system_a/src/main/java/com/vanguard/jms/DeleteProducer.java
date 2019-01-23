@@ -1,8 +1,14 @@
 package com.vanguard.jms;
 
+import com.vanguard.commons.base.BaseDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 
 /**
  * @Title: 删除操作的生产者
@@ -18,7 +24,7 @@ public class DeleteProducer implements Producer {
     private JmsMessagingTemplate jmsMessagingTemplate;
 
     @Override
-    public void sendMsg(Object message) {
-        jmsMessagingTemplate.convertAndSend("delete-queue", message);
+    public void sendMsg(BaseDomain domain) {
+        jmsMessagingTemplate.convertAndSend("delete-queue", domain.getId());
     }
 }

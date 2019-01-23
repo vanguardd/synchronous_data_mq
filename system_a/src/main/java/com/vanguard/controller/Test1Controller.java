@@ -1,6 +1,7 @@
 package com.vanguard.controller;
 
 import com.vanguard.commons.base.BaseController;
+import com.vanguard.commons.exception.BusinessException;
 import com.vanguard.commons.response.CommonReturnCode;
 import com.vanguard.commons.response.HttpResult;
 import com.vanguard.domain.Test1;
@@ -24,13 +25,18 @@ public class Test1Controller extends BaseController {
     @Autowired
     private Test1Service test1Service;
 
-    @PostMapping("")
-    public HttpResult save(@RequestBody Test1 test1) {
-        test1Service.save(test1);
-        return new HttpResult(CommonReturnCode.OK);
+    @PostMapping("/add")
+    public HttpResult add(@RequestBody Test1 test1) {
+        try {
+            test1Service.add(test1);
+            return new HttpResult(CommonReturnCode.OK);
+        } catch (BusinessException e) {
+            return new HttpResult(e.getCode(), e.getMessage());
+        }
+
     }
 
-    @PutMapping("")
+    @PutMapping("/update")
     public HttpResult update(@RequestBody Test1 test1) {
         Test1 update = test1Service.update(test1);
         return new HttpResult(CommonReturnCode.OK, update);
@@ -54,8 +60,4 @@ public class Test1Controller extends BaseController {
         test1Service.delete(id);
         return new HttpResult(CommonReturnCode.SUCCESS);
     }
-
-
-
-
 }

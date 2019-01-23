@@ -2,6 +2,7 @@ package com.vanguard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jms.annotation.EnableJms;
 import tk.mybatis.spring.annotation.MapperScan;
 
 import javax.persistence.Table;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
  * @version 1.0
  * @date 18/7/18
  */
+@EnableJms
 @SpringBootApplication
 @MapperScan(basePackages = "com.vanguard.mapper")
 public class SystemAApplication {
