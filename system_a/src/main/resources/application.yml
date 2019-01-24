@@ -34,10 +34,7 @@ spring:
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
         # 合并多个DruidDataSource的监控数据
         useGlobalDataSourceStat: false
-  activemq:
-      broker-url: tcp://127.0.0.1:61616
-      user: admin
-      password: admin
+
 
 mybatis:
       type-aliases-package: com.vanguard.domain
