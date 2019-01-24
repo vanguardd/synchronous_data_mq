@@ -33,17 +33,10 @@ public class Test1ConsumerServiceImpl implements Test1ConsumerService {
 
     @Override
     @JmsListener(destination = "test1-update-queue")
-    public void updateQueue(Message message) {
-        if(message instanceof ObjectMessage) {
-            ObjectMessage objectMessage = (ObjectMessage) message;
-            try {
-                Test1 test1 = (Test1) objectMessage.getObject();
-                //接收到消息
-                test1Service.update(test1);
-            } catch (JMSException e) {
-                e.printStackTrace();
-            }
-        }
+    public void updateQueue(Test1 test1) {
+        //接收到消息
+        test1Service.update(test1);
+
     }
 
     @Override

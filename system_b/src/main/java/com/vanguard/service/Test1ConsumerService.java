@@ -21,9 +21,9 @@ public interface Test1ConsumerService {
 
     /**
      * 消费者更新消息队列
-     * @param message
+     * @param test1
      */
-    void updateQueue(Message message);
+    void updateQueue(Test1 test1);
 
     /**
      * 消费者删除消息队列
