@@ -9,9 +9,10 @@ spring:
       user: admin
       password: admin
       broker-url: tcp://127.0.0.1:61616
-      pool:
-        enabled: true
-        max-connections: 10
+      in-memory: true
+      #配置序列化信任所有的包
+      packages:
+        trust-all: true
 
 logging:
   level:

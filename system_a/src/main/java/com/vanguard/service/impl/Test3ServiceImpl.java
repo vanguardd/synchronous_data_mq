@@ -1,13 +1,9 @@
 package com.vanguard.service.impl;
 
-import com.vanguard.commons.exception.BusinessException;
-import com.vanguard.domain.Test2;
 import com.vanguard.domain.Test3;
-import com.vanguard.jms.Producer;
-import com.vanguard.jms.ProducerFactory;
-import com.vanguard.mapper.Test2Mapper;
+
 import com.vanguard.mapper.Test3Mapper;
-import com.vanguard.service.Test2Service;
+import com.vanguard.service.ProducerService;
 import com.vanguard.service.Test3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +23,14 @@ public class Test3ServiceImpl implements Test3Service {
     @Autowired
     private Test3Mapper test3Mapper;
 
+    @Autowired
+    private ProducerService producerService;
+
     @Override
     public void add(Test3 test3) {
         test3Mapper.insert(test3);
         //添加成功后，发送同步消息
-        Producer add = ProducerFactory.createProducer("add");
-        add.sendMsg(test3);
+        producerService.sendObjectMessage("test3-add-queue", test3);
     }
 
     @Override
@@ -51,8 +49,7 @@ public class Test3ServiceImpl implements Test3Service {
     public Test3 update(Test3 test3) {
         test3Mapper.updateByPrimaryKey(test3);
         //修改成功后，发送同步消息
-        Producer update = ProducerFactory.createProducer("update");
-        update.sendMsg(test3);
+        producerService.sendObjectMessage("test3-update-queue", test3);
         return test3;
     }
 
@@ -60,9 +57,8 @@ public class Test3ServiceImpl implements Test3Service {
     public void delete(Long id) {
         test3Mapper.deleteByPrimaryKey(id);
         //TODO 删除成功后，发送同步消息
-        Producer delete = ProducerFactory.createProducer("delete");
         Test3 test3 = new Test3();
         test3.setId(id);
-        delete.sendMsg(test3);
+        producerService.sendObjectMessage("test3-delete-queue", test3);
     }
 }
