@@ -1,5 +1,7 @@
 # synchronous_data_mq
 
+https://gitee.com/vanguardd/synchronous_data_mq
+
 #### 安装教程
     (1) 使用IDEA导入synchronous_data_mq
     (2) 导入SQL文件夹中的数据库system_a和system_b;
@@ -16,7 +18,7 @@
     一、system_a系统
     1、test1的接口：
     （1）新增数据
-        请求类型：GET
+        请求类型：POST
         url:http://localhost:8081/system_a/test1/add
         请求数据：
         {
@@ -45,7 +47,7 @@
         url: http://localhost:8081/system_a/test1/{id}
     2、test2的接口：
     （1）新增数据
-        请求类型：GET
+        请求类型：POST
         url:http://localhost:8081/system_a/test3/add
         请求数据：
         {
@@ -80,7 +82,7 @@
         url: http://localhost:8081/system_a/test3/{id}
     3、test3的接口：
     （1）新增数据
-        请求类型：GET
+        请求类型：POST
         url:http://localhost:8081/system_a/test3/add
         请求数据：
         {
