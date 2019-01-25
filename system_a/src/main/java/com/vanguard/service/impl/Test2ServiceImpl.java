@@ -4,6 +4,8 @@ import com.vanguard.domain.Test2;
 import com.vanguard.mapper.Test2Mapper;
 import com.vanguard.service.ProducerService;
 import com.vanguard.service.Test2Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ import java.util.List;
 @Service
 public class Test2ServiceImpl implements Test2Service {
 
+    private static Logger logger = LoggerFactory.getLogger(Test2ServiceImpl.class);
+
     @Autowired
     private Test2Mapper test2Mapper;
 
@@ -30,6 +34,7 @@ public class Test2ServiceImpl implements Test2Service {
         test2Mapper.insert(test2);
         //添加成功后，发送同步消息
         producerService.sendObjectMessage("test2-add-queue", test2);
+        logger.info("系统A发送添加数据的同步消息：" + test2);
     }
 
     @Override
@@ -49,6 +54,7 @@ public class Test2ServiceImpl implements Test2Service {
         test2Mapper.updateByPrimaryKey(test2);
         //修改成功后，发送同步消息
         producerService.sendObjectMessage("test2-update-queue", test2);
+        logger.info("系统A发送更新数据的同步消息：" + test2);
         return test2;
     }
 
@@ -59,5 +65,6 @@ public class Test2ServiceImpl implements Test2Service {
         test2.setId(id);
         //删除成功后，发送同步消息
         producerService.sendObjectMessage("test2-delete-queue", test2);
+        logger.info("系统A发送删除数据的同步消息，删除数据的id为：" + test2.getId());
     }
 }

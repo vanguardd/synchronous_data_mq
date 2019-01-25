@@ -61,4 +61,15 @@ public class Test3 extends BaseDomain {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Test3{" +
+                "id=" + id +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

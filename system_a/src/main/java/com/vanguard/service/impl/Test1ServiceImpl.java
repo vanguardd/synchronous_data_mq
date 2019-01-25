@@ -4,6 +4,8 @@ import com.vanguard.domain.Test1;
 import com.vanguard.mapper.Test1Mapper;
 import com.vanguard.service.ProducerService;
 import com.vanguard.service.Test1Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ import java.util.List;
 @Service
 public class Test1ServiceImpl implements Test1Service {
 
+    private static Logger logger = LoggerFactory.getLogger(Test1ServiceImpl.class);
+
     @Autowired
     private Test1Mapper test1Mapper;
 
@@ -30,6 +34,7 @@ public class Test1ServiceImpl implements Test1Service {
         test1Mapper.insert(test1);
         //添加成功后，发送消息同步数据
         producerService.sendObjectMessage("test1-add-queue", test1);
+        logger.info("系统A发送添加数据的消息：" + test1);
     }
 
     @Override
@@ -49,6 +54,7 @@ public class Test1ServiceImpl implements Test1Service {
         test1Mapper.updateByPrimaryKey(test1);
         //修改成功后，发送消息同步
         producerService.sendObjectMessage("test1-add-queue", test1);
+        logger.info("系统A发送更新数据的消息：" + test1);
         return test1;
     }
 
@@ -59,5 +65,6 @@ public class Test1ServiceImpl implements Test1Service {
         test1.setId(id);
         //删除成功后，发送消息同步
         producerService.sendObjectMessage("test1-delete-queue", test1);
+        logger.info("系统A发送删除数据的消息，删除数据的id为：" + test1.getId());
     }
 }

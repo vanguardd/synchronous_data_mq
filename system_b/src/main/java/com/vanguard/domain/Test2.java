@@ -109,4 +109,18 @@ public class Test2 extends BaseDomain {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Test2{" +
+                "id=" + id +
+                ", subid='" + subid + '\'' +
+                ", meid='" + meid + '\'' +
+                ", acid='" + acid + '\'' +
+                ", acname='" + acname + '\'' +
+                ", number='" + number + '\'' +
+                ", name='" + name + '\'' +
+
+                '}';
+    }
 }
