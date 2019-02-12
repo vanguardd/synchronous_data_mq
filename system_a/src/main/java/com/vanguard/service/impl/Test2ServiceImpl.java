@@ -1,8 +1,9 @@
 package com.vanguard.service.impl;
 
+import com.vanguard.commons.jms.MessageObject;
+import com.vanguard.commons.jms.MessageProducer;
 import com.vanguard.domain.Test2;
 import com.vanguard.mapper.Test2Mapper;
-import com.vanguard.service.ProducerService;
 import com.vanguard.service.Test2Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +28,15 @@ public class Test2ServiceImpl implements Test2Service {
     private Test2Mapper test2Mapper;
 
     @Autowired
-    private ProducerService producerService;
+    private MessageProducer messageProducer;
 
     @Override
     public void add(Test2 test2) {
         test2Mapper.insert(test2);
-        //添加成功后，发送同步消息
-        producerService.sendObjectMessage("test2-add-queue", test2);
-        logger.info("系统A发送添加数据的同步消息：" + test2);
+        //添加成功后，发送消息同步数据
+        MessageObject messageObject = new MessageObject("test2", "add", test2);
+        logger.info("系统A发送添加数据的消息：" + messageObject);
+        messageProducer.sendObjectMessage(messageObject);
     }
 
     @Override
@@ -53,18 +55,18 @@ public class Test2ServiceImpl implements Test2Service {
     public Test2 update(Test2 test2) {
         test2Mapper.updateByPrimaryKey(test2);
         //修改成功后，发送同步消息
-        producerService.sendObjectMessage("test2-update-queue", test2);
-        logger.info("系统A发送更新数据的同步消息：" + test2);
+        MessageObject messageObject = new MessageObject("test2", "update", test2);
+        logger.info("系统A发送更新数据的消息：" + messageObject);
+        messageProducer.sendObjectMessage(messageObject);
         return test2;
     }
 
     @Override
     public void delete(Long id) {
         test2Mapper.deleteByPrimaryKey(id);
-        Test2 test2 = new Test2();
-        test2.setId(id);
         //删除成功后，发送同步消息
-        producerService.sendObjectMessage("test2-delete-queue", test2);
-        logger.info("系统A发送删除数据的同步消息，删除数据的id为：" + test2.getId());
+        MessageObject messageObject = new MessageObject("test2", "delete", id);
+        messageProducer.sendObjectMessage(messageObject);
+        logger.info("系统A发送删除数据的消息：" + messageObject);
     }
 }

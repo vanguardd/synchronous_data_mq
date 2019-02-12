@@ -15,7 +15,7 @@ import java.util.List;
  * @Version: 1.0
  * @Date: 2019/01/21
  */
-@Service
+@Service("test1Service")
 public class Test1ServiceImpl implements Test1Service {
 
     @Autowired
@@ -47,8 +47,6 @@ public class Test1ServiceImpl implements Test1Service {
 
     @Override
     public void delete(Long id) {
-        Test1 test1 = new Test1();
-        test1.setId(id);
-        test1Mapper.updateByPrimaryKey(test1);
+        test1Mapper.deleteByPrimaryKey(id);
     }
 }

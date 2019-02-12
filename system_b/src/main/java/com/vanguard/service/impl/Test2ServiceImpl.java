@@ -15,7 +15,7 @@ import java.util.List;
  * @Version: 1.0
  * @Date: 2019/01/21
  */
-@Service
+@Service("test2Service")
 public class Test2ServiceImpl implements Test2Service {
 
     @Autowired

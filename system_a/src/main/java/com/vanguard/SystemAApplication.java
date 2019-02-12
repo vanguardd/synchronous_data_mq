@@ -7,7 +7,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.jms.annotation.EnableJms;
 import tk.mybatis.spring.annotation.MapperScan;
 
-import javax.persistence.Table;
 
 /**
  * @title SpringBoot应用的入口

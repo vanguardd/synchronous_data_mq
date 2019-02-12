@@ -15,7 +15,7 @@ import java.util.List;
  * @Version: 1.0
  * @Date: 2019/01/21
  */
-@Service
+@Service("test3Service")
 public class Test3ServiceImpl implements Test3Service {
 
     @Autowired
